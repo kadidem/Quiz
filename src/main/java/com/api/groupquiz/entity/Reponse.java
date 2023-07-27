@@ -1,7 +1,10 @@
 package com.api.groupquiz.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Entity
+@Data
 public class Reponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

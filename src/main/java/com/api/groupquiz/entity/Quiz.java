@@ -22,19 +22,19 @@ public class Quiz {
     private Utilisateur utilisateur;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "quiz",cascade = CascadeType.ALL)
-    private List<Question> questions;
+  //  @OneToMany(mappedBy = "quiz",cascade = CascadeType.ALL)
+    //private List<Question> questions;
 
     public Quiz() {
     }
 
-    public Quiz(Long id, String titre,int minPoint,Utilisateur utilisateur, List<Question> questions) {
-        this.id = id;
-        this.titre = titre;
-        this.minPoint = minPoint;
-        this.questions = questions;
-        this.utilisateur = utilisateur;
-    }
+ //   public Quiz(Long id, String titre,int minPoint,Utilisateur utilisateur, List<Question> questions) {
+   //     this.id = id;
+     //   this.titre = titre;
+     //   this.minPoint = minPoint;
+     //   this.questions = questions;
+       // this.utilisateur = utilisateur;
+    //}
 
     public Utilisateur getUtilisateur() {
         return utilisateur;
@@ -68,11 +68,11 @@ public class Quiz {
         this.titre = titre;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
+     //public List<Question> getQuestions() {
+     //   return questions;
+    //}
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
+   // public void setQuestions(List<Question> questions) {
+     //   this.questions = questions;
+    //}
 }

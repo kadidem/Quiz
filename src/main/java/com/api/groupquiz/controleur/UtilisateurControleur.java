@@ -1,12 +1,9 @@
 package com.api.groupquiz.controleur;
 
+import com.api.groupquiz.ApiResponse;
 import com.api.groupquiz.entity.Utilisateur;
 import com.api.groupquiz.service.UtilisateurService;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,5 +33,8 @@ public class UtilisateurControleur {
     public Optional<Utilisateur> readById(@PathVariable Long id){
         return utilisateurService.readById(id);
     }
-
+    @PostMapping("/login")
+    public ApiResponse login(@RequestParam String email, @RequestParam String password){
+        return utilisateurService.login(email,password);
+    }
 }

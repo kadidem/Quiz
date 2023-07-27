@@ -1,5 +1,6 @@
 package com.api.groupquiz.service;
 
+import com.api.groupquiz.ApiResponse;
 import com.api.groupquiz.entity.Utilisateur;
 import com.api.groupquiz.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
     public Optional<Utilisateur> readById(Long id) {
         return utilisateurRepository.findById(id);
+    }
+
+    @Override
+    public ApiResponse login(String email, String password) {
+            Utilisateur user = utilisateurRepository.findByEmail(email);
+            if(user == null) {
+                // throw new RuntimeException("Password mismatch.");
+                return new ApiResponse(200, "Couple email et mot de passe ne correspond pas", null) ;
+            }
+            if(!user.getPassword().equals(password)){
+                return new ApiResponse(200, "Couple email et mot de passe ne correspond pas", null);
+            }
+            return new ApiResponse(200, "Login success", user) ;
+
     }
 
 }

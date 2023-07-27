@@ -1,4 +1,4 @@
-package com.api.groupquiz;
+package com.api.groupquiz.entity;
 
 
 import jakarta.persistence.Entity;
@@ -15,7 +15,6 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_question;
     private String libelle;
-    private Long quiz_id;
     private int point;
 
 }

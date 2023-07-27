@@ -33,8 +33,8 @@ public class UtilisateurControleur {
         return utilisateurService.delete(id);
     }
     @GetMapping("/read/{id}")
-    public Optional<Utilisateur> read1(@PathVariable Long id){
-        return utilisateurService.read1(id);
+    public Optional<Utilisateur> readById(@PathVariable Long id){
+        return utilisateurService.readById(id);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.api.groupquiz.service;
 
-import com.yougo.APIRESTTP.model.Participation;
-import com.yougo.APIRESTTP.repository.ParticipationRepository;
+import com.api.groupquiz.entity.Participation;
+import com.api.groupquiz.repository.ParticipationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

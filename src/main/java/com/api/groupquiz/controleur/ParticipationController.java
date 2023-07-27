@@ -1,8 +1,14 @@
 package com.api.groupquiz.controleur;
 
 
+import com.api.groupquiz.entity.Participation;
+import com.api.groupquiz.entity.Quiz;
+import com.api.groupquiz.entity.Reponse;
+import com.api.groupquiz.entity.Utilisateur;
 import com.api.groupquiz.service.ParticipationService;
+import com.api.groupquiz.service.ReponseService;
 import com.api.groupquiz.service.UtilisateurService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +37,7 @@ public class ParticipationController {
     }
 
     @GetMapping("/{userId}/{quizId}/init")
-    public Participation init(@PathVariable Long userId,@PathVariable Long quizId){
+    public Participation init(@PathVariable Long userId, @PathVariable Long quizId){
         Participation participation = participationService.getParticipationByUserAndQuizId(userId,quizId);
         if(participation != null){
             participationService.editParticipation(participation.getId(), 0);
@@ -41,14 +47,14 @@ public class ParticipationController {
         return  new Participation();
     }
     @GetMapping("/{userId}/{quizId}/{questionId}")
-    public ApiResponse game(@PathVariable Long userId,@PathVariable Long quizId, @PathVariable Long questionId,
+    public ApiResponse game(@PathVariable Long userId, @PathVariable Long quizId, @PathVariable Long questionId,
                             @RequestParam Long checkedReponseID){
-            Utilisateur utilisateur = utilisateurService.findUtilisateurById(userId);
+            Utilisateur utilisateur = utilisateurService.readById(userId).get();
             Question quest = questionService.findQuestionById(questionId);
             Quiz quiz = quest.getQuiz();
 
            Long quizzId = quiz.getId();
-           boolean checkResponse = reponseService.getReponseById(checkedReponseID).get().isIscorrect();
+           boolean checkResponse = reponseService.readById(checkedReponseID).get().isIscorrect();
            Participation participation = participationService.getParticipationByUserAndQuizId(userId,quizId);
            if(participation == null){
                 participation = new Participation();
@@ -60,9 +66,9 @@ public class ParticipationController {
            List <Reponse> responses = reponseService.getAllResponsesByQuizId(quizId);
            if(checkResponse){
                participationService.editParticipation(participation.getId(), participation.getScore()+quest.getPoints());
-               return new ApiResponse(200,"Mr "+utilisateur.getName()+" Vous avez choici la bonne reponse votre score est de "+(participation.getScore()+quest.getPoints()),null);
+               return new ApiResponse(200,"Mr "+utilisateur.getPrenom_nom()+" Vous avez choici la bonne reponse votre score est de "+(participation.getScore()+quest.getPoints()),null);
            }else
-               return new ApiResponse(200," Oups Mr "+utilisateur.getName()+" Vous avez choici la nauvaise reponse "+checkedReponseID,responses);
+               return new ApiResponse(200," Oups Mr "+utilisateur.getPrenom_nom()+" Vous avez choici la nauvaise reponse "+checkedReponseID,responses);
 
     }
     @GetMapping("{id}")
@@ -80,7 +86,7 @@ public class ParticipationController {
         return participationService.deleQuestionById(id);
     }
 
-    @PostMapping("/creer")
+    @PostMapping("/create")
     public Participation create(@RequestBody Participation participation){
         return participationService.createQuiz(participation);
     }

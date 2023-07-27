@@ -1,7 +1,7 @@
 package com.api.groupquiz.service;
 
-import com.yougo.APIRESTTP.model.Quiz;
-import com.yougo.APIRESTTP.repository.QuizRepository;
+import com.api.groupquiz.entity.Quiz;
+import com.api.groupquiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class QuizService {
     @Autowired
     private QuizRepository quizRepository;
 
-    public  Quiz createQuiz(Quiz quiz){
+    public Quiz createQuiz(Quiz quiz){
         return quizRepository.save(quiz);
     }
     public List<Quiz> getAllQuiz(){

@@ -42,7 +42,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return "utilisateur supprimé";
 
     }
-    public Optional<Utilisateur> read1(Long id) {
+    public Optional<Utilisateur> readById(Long id) {
         return utilisateurRepository.findById(id);
     }
 

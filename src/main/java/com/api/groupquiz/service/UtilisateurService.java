@@ -10,5 +10,5 @@ public interface UtilisateurService {
     List<Utilisateur> read();
     Utilisateur update(Long id , Utilisateur utilisateur);
     String delete(Long id);
-    Optional<Utilisateur> read1(Long id);
+    Optional<Utilisateur> readById(Long id);
 }

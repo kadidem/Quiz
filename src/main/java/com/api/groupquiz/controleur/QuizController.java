@@ -1,7 +1,7 @@
 package com.api.groupquiz.controleur;
 
-import com.yougo.APIRESTTP.model.Quiz;
-import com.yougo.APIRESTTP.services.QuizService;
+import com.api.groupquiz.entity.Quiz;
+import com.api.groupquiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +39,7 @@ public class QuizController {
         return (Quiz) quiz.orElse(null);
     }
     @PutMapping("/update/{id}")
-    public Quiz updateQuiz(@PathVariable Long id,@RequestBody Quiz quiz){
+    public Quiz updateQuiz(@PathVariable Long id, @RequestBody Quiz quiz){
         Optional<Quiz> quizz = Optional.ofNullable(quizService.editQuiz(id, quiz));
         return (Quiz) quizz.orElse(null);
     }

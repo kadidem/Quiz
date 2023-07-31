@@ -1,6 +1,7 @@
 package com.api.groupquiz.controleur;
 
 import com.api.groupquiz.entity.Reponse;
+import com.api.groupquiz.service.ReponseService;
 import com.api.groupquiz.repository.UtilisateurRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,12 @@ import java.util.Optional;
 @RequestMapping("reponse")
 @AllArgsConstructor
 public class ReponseControleur {
-    private final UtilisateurRepository.ReponseService reponseService;
+    private final ReponseService reponseService;
     @PostMapping("/create")
     public Reponse create (@RequestBody Reponse reponse){
         return reponseService.create(reponse);
     }
-    @GetMapping
+    @GetMapping("/read")
     public List<Reponse> read(){
         return reponseService.read();
     }
@@ -33,4 +34,5 @@ public class ReponseControleur {
     public Optional<Reponse> readById(@PathVariable Long id){
         return reponseService.readById(id);
     }
+
 }

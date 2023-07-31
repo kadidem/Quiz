@@ -1,5 +1,6 @@
 package com.api.groupquiz.service;
 
+import com.api.groupquiz.ApiResponse;
 import com.api.groupquiz.entity.Utilisateur;
 import com.api.groupquiz.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepository.findById(id);
     }
 
+    @Override
+    public ApiResponse login(String email, String password) {
+        return null;
+    }
 
 
 }

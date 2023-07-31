@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class ReponseServiceImpl implements UtilisateurRepository.ReponseService {
+public class ReponseServiceImpl implements ReponseService {
     private final ReponseRepository reponseRepository;
     public ReponseServiceImpl(ReponseRepository reponseRepository) {
         this.reponseRepository = reponseRepository;
@@ -26,16 +26,22 @@ public class ReponseServiceImpl implements UtilisateurRepository.ReponseService 
 
     @Override
     public Reponse update(Long id, Reponse reponse) {
-        return null;
+        return reponseRepository.findById(id)
+                .map(p -> {
+                    p.setLibelle(reponse.getLibelle());
+                    return reponseRepository.save(p);
+                }).orElseThrow(() -> new RuntimeException("Reponse non trouvé"));
+
     }
 
     @Override
     public String delete(Long id) {
-        return null;
+        reponseRepository.deleteById(id);
+        return "Reponse supprimé avec succes";
     }
 
     @Override
     public Optional<Reponse> readById(Long id) {
-        return Optional.empty();
+        return reponseRepository.findById(id);
     }
 }

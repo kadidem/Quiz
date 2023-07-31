@@ -2,15 +2,15 @@ package com.api.groupquiz;
 
 public class ApiResponse {
 
-        private int status;
-        private String message;
-        private Object result;
+    private int status;
+    private String message;
+    private Object result;
 
-        public ApiResponse(int status, String message, Object result){
-            this.status = status;
-            this.message = message;
-            this.result = result;
-        }
+    public ApiResponse(int status, String message, Object result){
+        this.status = status;
+        this.message = message;
+        this.result = result;
+    }
 
     public void setStatus(int status) {
         this.status = status;
@@ -33,6 +33,6 @@ public class ApiResponse {
     }
 
     public int getStatus() {
-            return status;
-        }
+        return status;
+    }
 }

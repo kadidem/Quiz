@@ -25,8 +25,6 @@ public class ParticipationController {
     private final QuestionService questionService;
 
     private final ReponseService reponseService;
-
-
     @Autowired
     public ParticipationController(ParticipationService participationService,UtilisateurService utilisateurService,
                                     QuestionService questionService,ReponseService reponseService){
@@ -35,7 +33,6 @@ public class ParticipationController {
         this.questionService = questionService;
         this.reponseService = reponseService;
     }
-
     @GetMapping("/{userId}/{quizId}/init")
     public Participation init(@PathVariable Long userId, @PathVariable Long quizId){
         Participation participation = participationService.getParticipationByUserAndQuizId(userId,quizId);
